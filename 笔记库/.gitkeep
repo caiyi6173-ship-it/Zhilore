@@ -1,0 +1,5 @@
+占位文件：保持 笔记库/ 目录存在于仓库中。
+
+Dockerfile 里有 `COPY 笔记库/ ./笔记库/`，缺少该目录会让 `docker compose build` 失败。
+知识库正文（.raw/sources、wiki/、_索引.json、_图谱.json）按 .gitignore 规则不入库，
+部署时由数据卷或服务器上的实际内容提供。
