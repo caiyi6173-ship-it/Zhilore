@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>知乎收藏 · 个人知识库</title>
+  <link rel="stylesheet" href="/assets/oauth.css">
+  <script src="/assets/login-redirect.js" defer></script>
+  <script src="/assets/oauth.js" defer></script>
+</head>
+<body class="account-page" data-default-return-to="/workspace/">
+  <a class="skip-link" href="#collections">跳到收藏夹</a>
+  <div class="shell">
+    <header class="masthead">
+      <a class="wordmark" href="/" aria-label="知乎收藏知识库首页"><span class="seal">知</span> 收藏知识库</a>
+      <span class="edition">ACCOUNT / WORKSPACE <span class="edition-dot" aria-hidden="true"></span></span>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div class="hero-field" id="hero-field" aria-hidden="true">
+          <div class="ambient-wash ambient-wash-left"></div>
+          <div class="ambient-wash ambient-wash-right"></div>
+          <svg class="knowledge-orbits" viewBox="0 0 1440 600" fill="none">
+            <g class="orbit-paths" stroke="currentColor">
+              <path d="M-180 520C145 125 351 581 735 348S1221 1 1630 146"/>
+              <path d="M-180 539C149 149 356 599 742 371S1225 28 1630 168"/>
+              <path d="M-180 558C153 173 361 617 749 394S1229 55 1630 190"/>
+              <path d="M-150 198C190 416 317 55 686 240S1166 613 1600 334"/>
+              <path d="M-150 216C194 434 321 77 691 260S1170 630 1600 356"/>
+            </g>
+            <g class="orbit-points" fill="currentColor">
+              <circle cx="182" cy="332" r="5"/><circle cx="1224" cy="170" r="4"/>
+              <circle cx="1115" cy="442" r="5"/><circle cx="347" cy="215" r="3"/>
+            </g>
+            <g class="orbit-rings" stroke="currentColor">
+              <circle cx="182" cy="332" r="15"/><circle cx="1115" cy="442" r="16"/>
+            </g>
+          </svg>
+        </div>
+        <div class="intro-content">
+          <p class="eyebrow"><span class="eyebrow-star" aria-hidden="true">✦</span> YOUR KNOWLEDGE, CONNECTED</p>
+          <h1 id="page-title">让收藏，<br><em>生长为知识。</em></h1>
+          <p class="intro-copy">用你自己的知乎身份，收录你的公开收藏摘要。<br>先绑定账号，再进入只属于这个账号的知识库工作区。</p>
+          <div class="hero-action">
+            <button id="login" class="button hero-button" type="button" disabled>用知乎账号授权 <span aria-hidden="true">↗</span></button>
+            <a id="enter-workspace" class="button hero-button workspace-link" href="/workspace/" hidden>进入我的知识库工作区 <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <aside class="boundary" aria-label="使用步骤">
+          <span class="small-label">同一个入口，三个步骤</span>
+          <ol><li><span>01</span> 绑定你自己的知乎账号</li><li><span>02</span> 选择公开收藏，按页收录摘要</li><li><span>03</span> 在个人知识库中搜索与阅读</li></ol>
+          <p>不收集知乎密码 · 不混用其他人的笔记 · 摘要不是全文</p>
+        </aside>
+      </section>
+
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+      <div class="workspace">
+        <aside class="connection-panel" aria-labelledby="connection-title">
+          <div class="panel-heading"><h2 id="connection-title">连接状态</h2><span id="connection-badge" class="badge">检查中</span></div>
+          <section class="account-box" aria-labelledby="account-name">
+            <p class="small-label">当前知乎账户</p>
+            <h3 id="account-name">尚未连接</h3>
+            <p id="account-id" class="account-id">登录后显示稳定用户 ID，不用昵称区分账号。</p>
+            <p id="expires" class="muted" hidden></p>
+          </section>
+          <div class="actions">
+            <button id="logout" class="button secondary" type="button" hidden>退出此账号</button>
+            <button id="refresh-session" class="text-button" type="button">刷新连接状态</button>
+            <a id="manage-collections" class="collections-manage" href="https://www.zhihu.com/collections/mine" target="_blank" rel="noopener noreferrer">在知乎管理收藏夹可见性 <span aria-hidden="true">↗</span></a>
+          </div>
+        </aside>
+
+        <section id="collections" class="collection-panel" aria-labelledby="collections-title" aria-busy="false">
+          <div class="panel-heading collection-heading">
+            <div><p class="small-label">PUBLIC COLLECTIONS</p><h2 id="collections-title">当前账户的公开收藏夹 <span id="collection-count" class="count">—</span></h2></div>
+            <button id="refresh-collections" class="button small secondary" type="button" disabled>重新读取</button>
+          </div>
+          <p id="scope-note" class="scope-note">仅读取当前授权用户的公开收藏夹，私密收藏夹不在开放范围——这是开放接口的契约，完成授权也不会改变。要收录私密夹，请先在知乎把它改为公开（见左侧「在知乎管理收藏夹可见性」），再点「重新读取」。列表最多返回 50 个，接口未提供分页，不保证已列出全部。</p>
+          <div id="collection-state" class="empty-state">
+            <span class="folder-mark" aria-hidden="true"><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="36" stroke="currentColor" stroke-opacity=".12"/><path d="M20 27a4 4 0 0 1 4-4h13l7 7h12a4 4 0 0 1 4 4v20a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4V27Z" stroke="currentColor" stroke-width="1.5"/><path d="M20 35h40M32 46h16M40 40v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="66" cy="22" r="4" fill="currentColor" fill-opacity=".25"/></svg></span>
+            <h3 id="collection-state-title">先连接，再看收藏</h3>
+            <p id="collection-state-copy">这里不会预填演示数据，也不会展示开发者账号的收藏夹。</p>
+          </div>
+          <ul id="collection-list" class="collection-list" aria-label="公开收藏夹列表" hidden></ul>
+          <section id="collection-reader" class="collection-reader" aria-labelledby="reader-title" aria-busy="false" hidden>
+            <div class="reader-heading">
+              <div><p class="small-label">PUBLIC CONTENT / 公开内容</p><h3 id="reader-title" tabindex="-1"></h3></div>
+              <button id="close-reader" class="text-button" type="button">关闭内容</button>
+            </div>
+            <p id="reader-description" class="reader-description"></p>
+            <p class="reader-scope">以下是标题和摘要，不是全文。点击内容标题可到知乎阅读原文。每页 20 条，按需加载；翻页时会重新核验公开列表。</p>
+            <p id="reader-progress" class="reader-progress" role="status" aria-live="polite"></p>
+            <p id="reader-feedback" class="reader-feedback" role="alert" hidden></p>
+            <div id="reader-state" class="empty-state reader-empty">
+              <span class="folder-mark" aria-hidden="true">≡</span>
+              <h4 id="reader-state-title"></h4><p id="reader-state-copy"></p>
+            </div>
+            <ol id="content-list" class="content-list" aria-label="公开收藏内容" hidden></ol>
+            <div class="reader-actions">
+              <button id="import-page" class="button small primary" type="button" hidden>收录最近一页摘要</button>
+              <button id="load-more" class="button small primary" type="button" hidden>加载更多</button>
+              <button id="retry-content" class="button small secondary" type="button" hidden>重试本页</button>
+              <button id="refresh-content" class="text-button" type="button">重新读取内容</button>
+            </div>
+            <p id="import-feedback" class="import-feedback" role="status" aria-live="polite" hidden></p>
+            <p class="reader-scope">收录只保存最近成功读取的一页（最多 20 条），不会自动遍历整个收藏夹。服务端会重新核验权限和内容，重复收录不重复新增；快照可能与当前知乎内容不同。</p>
+          </section>
+        </section>
+      </div>
+
+      <!-- 作者手记：入口页最底下的一段自述，用手写体呈现。纯展示，不参与任何接口契约。 -->
+      <section class="reflection" aria-labelledby="reflection-label">
+        <p class="reflection-label" id="reflection-label">作者手记 · A NOTE FROM THE AUTHOR</p>
+        <div class="reflection-body">
+          <p>第一次参与黑客松类的比赛，一个人开发还是很吃力，看到大家的作品真的觉得自己什么都不是，为什么会有这么好的想法，为什么做的这么美观。但是我还是很开心，人外有人，我也会一直在路上。</p>
+          <p>关于这个项目的未来，我觉得有几个点我会完善的：第一，界面 UI 的流程美观程度，直观程度；第二，可用性还是太局限了，应该多加几个功能，比如「想法记录」「想法开发」；第三，互动性还需要好好开发。</p>
+          <p>最后还是谢谢所有开发者，参加者，一起进步。</p>
+        </div>
+        <p class="reflection-sign">—— 项目作者</p>
+      </section>
+
+      <noscript><p class="notice">此应用需要 JavaScript；不会在禁用脚本时绕过授权。</p></noscript>
+    </main>
+    <footer><span>知乎收藏 · 个人知识库</span><span>登录成功 ≠ 拥有全部接口权限</span></footer>
+  </div>
+</body>
+</html>

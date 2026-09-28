@@ -1,0 +1,85 @@
+# 标签词典
+# ---------------------------------------------------------------
+# 一行一个标签，用 | 分隔同义词/别名，命中任意一个即打上该标签。
+# 第一个词是最终显示的标签名。
+# 以 # 开头的行是注释，可以随意增删。
+# 处理.py 每次运行都会重新读取本文件，改完直接重跑即可。
+# ---------------------------------------------------------------
+
+# ===== 大模型 =====
+大模型|LLM|大语言模型|large language model
+GPT|ChatGPT|GPT-4|GPT-5|GPT4
+Claude|Anthropic
+Gemini|Bard
+DeepSeek|深度求索
+Qwen|通义千问|通义
+Llama|Meta AI
+Kimi|月之暗面
+豆包|Doubao
+文心一言|ERNIE
+智谱|GLM|ChatGLM
+Mistral|Mixtral
+Grok|xAI
+开源模型|开源大模型|OpenSource LLM
+多模态|Multimodal|图文理解
+推理模型|Reasoning|思维链|CoT
+
+# ===== 技术方向 =====
+RAG|检索增强|检索增强生成|Retrieval-Augmented
+Agent|智能体|AI Agent|Multi-Agent|多智能体
+微调|Fine-tune|Fine-tuning|SFT|LoRA|QLoRA
+提示词|Prompt|Prompt Engineering|提示工程
+上下文工程|Context Engineering
+蒸馏|Distillation
+量化|Quantization|GGUF|AWQ|INT4|INT8
+MOE|MoE|混合专家
+Transformer|注意力机制|Attention
+Embedding|向量|向量化|Vector
+向量数据库|Vector DB|Milvus|Chroma|FAISS|Qdrant|PGVector
+知识图谱|Knowledge Graph|GraphRAG
+MCP|Model Context Protocol
+Function Calling|工具调用
+蒸馏模型|小模型|SLM|端侧模型
+
+# ===== 应用与产品 =====
+Cursor
+Claude Code|ClaudeCode
+Copilot|GitHub Copilot
+Dify|Coze|扣子
+n8n|工作流自动化
+Ollama|LM Studio|llama.cpp
+ComfyUI|Stable Diffusion|SDXL|Flux
+Midjourney
+Sora|可灵|Runway|视频生成
+AI编程|AI 编程|Vibe Coding|氛围编程
+AI搜索|Perplexity|秘塔
+NotebookLM
+AI浏览器
+
+# ===== 行业与市场 =====
+OpenAI
+英伟达|NVIDIA|N卡|GPU|显卡
+算力|云计算|数据中心
+融资|估值|IPO|独角兽
+开源|Open Source|GitHub
+商业化|变现|商业模式
+AI创业|独立开发|一人公司
+程序员|开发者|工程师
+裁员|就业|职业发展
+AI监管|合规|政策
+
+# ===== 效率与方法 =====
+个人知识库|第二大脑|Obsidian|Notion
+笔记法|知识管理|PKM|PARA
+自动化|效率工具|RPA
+爬虫|抓取|逆向
+SEO|流量|增长
+副业|自媒体|内容创作
+
+# ===== 兜底概念 =====
+人工智能|AI
+机器学习|Machine Learning|ML
+深度学习|Deep Learning
+神经网络|Neural Network
+AGI|通用人工智能
+数据标注|数据集|Dataset|语料

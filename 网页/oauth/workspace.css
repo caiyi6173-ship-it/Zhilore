@@ -1,0 +1,203 @@
+/* Account boundary around the blue-horizon knowledge canvas. */
+.personal-workspace { --accent: #4568ed; --accent-soft: rgba(69,104,237,.08); --accent-soft-strong: rgba(69,104,237,.17); --accent-line: rgba(69,104,237,.28); }
+.personal-workspace .layout { position: relative; }
+.account-bar { min-height: 54px; flex: 0 0 auto; display: flex; align-items: center; gap: 24px; padding: 10px 22px; border-bottom: 1px solid var(--border); background: var(--bg); }
+.workspace-brand { color: var(--text); font-weight: 650; white-space: nowrap; text-decoration: none; letter-spacing: .03em; }
+.workspace-brand span { margin-left: 10px; color: var(--text-sub); font-weight: 400; }
+#workspace-account { color: var(--text-sub); font-size: 12px; margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.account-bar nav { margin-left: auto; display: flex; gap: 18px; align-items: center; flex-shrink: 0; }
+.account-bar a:focus-visible, .account-bar button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.workspace-import { color: var(--accent); font-size: 12px; text-decoration: none; font-weight: 600; }
+#workspace-logout { color: var(--text-sub); font: inherit; font-size: 12px; border: 1px solid var(--border); background: var(--bg); border-radius: 5px; padding: 6px 12px; cursor: pointer; }
+#workspace-logout:disabled { opacity: .5; cursor: default; }
+.workspace-scope { margin: 0; padding: 7px 22px; background: var(--bg-sub); color: var(--text-sub); font-size: 11px; border-bottom: 1px solid var(--border-soft); flex: 0 0 auto; }
+#workspace-gate { display: none; padding: 60px 24px; max-width: 640px; margin: auto; text-align: center; }
+#workspace-gate h1 { font-size: 23px; font-weight: 500; margin-bottom: 16px; }
+#workspace-gate p { color: var(--text-sub); margin-bottom: 24px; }
+#workspace-gate a { color: var(--accent); }
+.workspace-locked #workspace-gate { display: block; }
+.workspace-locked .layout, .workspace-locked .statusbar, .workspace-locked .overlay, .workspace-locked #toast { display: none !important; }
+.summary-excerpt { white-space: normal; overflow-wrap: anywhere; line-height: 1.95; }
+.personal-workspace .tree-item.type-公开摘要 .dot { background: var(--accent); }
+.personal-workspace .tree-item.type-知识块 .dot { background: var(--accent); }
+.personal-workspace .chip.kind-公开摘要 { color: var(--accent); }
+.personal-workspace .chip.kind-知识块 { color: var(--accent); }
+@media (max-width: 700px) {
+  .account-bar { gap: 9px 14px; flex-wrap: wrap; padding: 10px 13px; }
+  .workspace-brand { font-size: 13px; }
+  .workspace-brand span { display: none; }
+  .account-bar nav { gap: 10px; }
+  #workspace-account { order: 3; flex-basis: 100%; font-size: 11px; }
+  .workspace-scope { padding: 7px 13px; line-height: 1.5; }
+}
+
+@media (max-width: 760px) {
+  /* Keep the mobile drawer inside the canvas, below the account boundary. */
+  .personal-workspace .sidebar { bottom: 0; grid-column: 1 / -1; width: min(280px, calc(100% - 42px)); }
+}
+
+/* Shared visual language with the account and settings pages. */
+:root[data-theme="dark"] .personal-workspace { --accent: #8baaff; --accent-soft: rgba(139,170,255,.10); --accent-soft-strong: rgba(139,170,255,.20); --accent-line: rgba(139,170,255,.32); }
+.account-bar { order: 0; min-height: 74px; padding: 17px 30px; gap: 30px; border-bottom: 0; background: var(--bg); }
+/* 品牌位是可点的（回首页），所以按"按键"来设计：有体积、有边界、有悬停与按下反馈。 */
+.workspace-brand { color: var(--accent); font-size: 18px; letter-spacing: .035em; display: inline-flex; align-items: center; min-height: 46px; padding: 12px 22px; border: 1px solid var(--accent-line); border-radius: 15px; background: var(--accent-soft); box-shadow: 0 8px 20px -18px rgba(38,74,140,.55); cursor: pointer; transition: background .2s, border-color .2s, box-shadow .2s, transform .2s; }
+.workspace-brand:hover { border-color: var(--accent); background: var(--accent-soft-strong); box-shadow: 0 12px 26px -18px rgba(38,74,140,.6); transform: translateY(-1px); }
+.workspace-brand:active { transform: translateY(0); box-shadow: 0 5px 14px -18px rgba(38,74,140,.55); }
+.workspace-brand:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.workspace-brand span { font-size: 13px; margin-left: 8px; }
+.account-bar nav { gap: 14px; }
+/* 账号栏右侧两个控件（管理账号 / 退出）与品牌位统一成"按键"：有体积、有边界、有反馈。 */
+.workspace-import { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px;
+  border: 1px solid var(--border); border-radius: 13px; background: var(--bg); color: var(--text-sub);
+  font-size: 12.5px; font-weight: 600; text-decoration: none; cursor: pointer;
+  transition: color .2s, border-color .2s, background .2s, box-shadow .2s, transform .2s; }
+.workspace-import:hover { color: var(--accent); border-color: var(--accent-line); background: var(--accent-soft);
+  box-shadow: 0 8px 20px -18px rgba(38, 74, 140, .55); transform: translateY(-1px); }
+.workspace-import:active { transform: translateY(0); }
+#workspace-logout { min-height: 44px; padding: 0 18px; border: 1px solid var(--border); border-radius: 13px;
+  background: var(--bg); color: var(--text-sub); font: inherit; font-size: 12.5px; font-weight: 600; cursor: pointer;
+  transition: color .2s, border-color .2s, background .2s, box-shadow .2s, transform .2s; }
+#workspace-logout:hover:not(:disabled) { border-color: var(--accent-line); background: var(--accent-soft); color: var(--accent);
+  box-shadow: 0 8px 20px -18px rgba(38, 74, 140, .55); transform: translateY(-1px); }
+#workspace-logout:active:not(:disabled) { transform: translateY(0); }
+#workspace-logout:disabled { opacity: .5; cursor: default; }
+.workspace-scope { order: 1; padding: 9px 30px; border-top: 1px solid var(--border-soft); border-bottom: 0; background: var(--bg); font-size: 11px; }
+.personal-workspace .layout { order: 3; }
+.personal-workspace .statusbar { order: 4; }
+#workspace-gate { order: 3; }
+.personal-workspace #zh-import { order: 2; flex-shrink: 0; width: calc(100% - 40px); max-width: none; margin: 16px 20px 0; padding: 25px 30px; gap: 30px; border: 1px solid var(--border); border-radius: 20px; background: linear-gradient(110deg, var(--bg), var(--bg-sub)); box-shadow: 0 8px 28px -24px rgba(38,74,140,.25); }
+.personal-workspace #zh-import h2 { margin-bottom: 10px; font-size: 21px; font-weight: 550; letter-spacing: .015em; }
+.personal-workspace #zh-import p { line-height: 1.9; }
+.personal-workspace #zh-import .zh-import-main { flex-basis: 420px; }
+.personal-workspace #zh-import .zh-import-side { min-width: 250px; gap: 12px; }
+.personal-workspace #zh-import button { background: var(--accent); color: #fff; border-radius: 13px; padding: 15px 27px; box-shadow: 0 5px 15px rgba(69,104,237,.12); transition: box-shadow .2s, transform .2s, opacity .2s; }
+:root[data-theme="dark"] .personal-workspace #zh-import button { color: #152448; }
+.personal-workspace #zh-import button:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(69,104,237,.2); }
+.personal-workspace #zh-import button:active:not(:disabled) { transform: translateY(0); }
+.personal-workspace #zh-import-track { height: 4px; background: var(--border); margin-top: 16px; }
+.personal-workspace #zh-import-bar-fill { background: var(--accent); }
+.personal-workspace #zh-import[data-state="done"] #zh-import-bar-fill { background: #3f8c69; }
+.personal-workspace #zh-import[data-state="failed"] #zh-import-bar-fill { background: #b96258; }
+.personal-workspace #zh-import-secret, .personal-workspace #zh-import-settings { text-decoration-color: var(--border); }
+.personal-workspace #zh-import-settings { color: var(--accent); margin-top: 2px; }
+@media (max-width: 1100px) {
+  .account-bar { padding-inline: 24px; gap: 20px; }
+  .workspace-brand span { display: none; }
+  .workspace-scope { padding-inline: 24px; }
+  .personal-workspace #zh-import { padding: 22px 25px; }
+}
+@media (max-width: 760px) {
+  .personal-workspace { height: auto; min-height: 100%; overflow-y: auto; }
+  .account-bar { min-height: 70px; padding: 16px; flex-wrap: wrap; gap: 12px; }
+  .workspace-brand { font-size: 16px; }
+  .account-bar nav { gap: 11px; }
+  .workspace-import { font-size: 11px; }
+  #workspace-logout { padding: 7px 11px; font-size: 11px; }
+  #workspace-account { order: 3; flex-basis: 100%; font-size: 11px; }
+  .workspace-scope { padding: 8px 16px 12px; font-size: 10px; line-height: 1.8; }
+  .personal-workspace #zh-import { width: calc(100% - 24px); margin: 12px 12px 3px; padding: 22px; border-radius: 18px; gap: 20px; }
+  .personal-workspace #zh-import h2 { font-size: 20px; line-height: 1.6; }
+  .personal-workspace #zh-import .zh-import-side { min-width: 0; width: 100%; align-items: stretch; }
+  .personal-workspace #zh-import button { width: 100%; }
+  .personal-workspace #zh-import-quota { text-align: left; }
+  .personal-workspace #zh-import-secret, .personal-workspace #zh-import-settings { text-align: center; }
+  .personal-workspace .layout { flex: 0 0 auto; height: max(520px, 70svh); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .personal-workspace #zh-import button, .workspace-brand { transition: none; transform: none !important; }
+}
+
+/* ── 「知乎收藏」下半部分：收藏夹 + 内容卡片 ─────────────────────────────
+   这一页不加载知识库那套前端（graph.js / app.js），也没有图谱画布，
+   所以它是普通文档流：桌面端也能正常下划，不会再出现"固定视口把下半部分压扁"。 */
+.collections-page { overflow-y: auto; }
+/* order 跟原来的 .layout 对齐：账号栏 0 → 范围说明 1 → 直答横幅 2 → 内容 3 → 状态栏 4。
+   不写 order 会被排到 order:0 里，直答横幅反而掉到卡片列表下面。 */
+.collections-page .collections { flex: 0 0 auto; order: 3; }
+.workspace-locked .collections { display: none !important; }
+.collections { display: grid; grid-template-columns: minmax(210px, 258px) minmax(0, 1fr);
+  margin: 12px 20px 0; border: 1px solid var(--border); border-radius: 18px; background: var(--bg);
+  overflow: hidden; box-shadow: 0 12px 40px -28px rgba(38, 74, 140, .22); }
+.collections-side { padding: 16px 12px; border-right: 1px solid var(--border-soft); background: var(--bg-rail); }
+.collections-side-head { display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 0 8px 12px; font-size: 12px; color: var(--text-sub); }
+.collections-count { font-size: 11px; color: var(--text-faint); }
+.collections-list { display: flex; flex-direction: column; gap: 4px; }
+.collections-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%;
+  padding: 10px 12px; border: 1px solid transparent; border-radius: 10px; background: transparent;
+  color: var(--text); font: inherit; font-size: 13px; text-align: left; cursor: pointer;
+  transition: background .18s, border-color .18s, color .18s; }
+.collections-item:hover { background: var(--bg-hover); }
+.collections-item.active { border-color: var(--accent-line); background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.collections-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.collections-item-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.collections-item-count { flex: 0 0 auto; font-size: 11px; color: var(--text-faint); }
+.collections-side-state { margin: 0 8px; font-size: 12px; color: var(--text-sub); }
+.collections-main { min-width: 0; padding: 22px 26px 28px; }
+.collections-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.collections-label { margin: 0 0 6px; font-size: 10px; letter-spacing: .15em; color: var(--text-faint); }
+.collections-head h1 { margin: 0; font-size: 22px; font-weight: 600; overflow-wrap: anywhere; }
+.collections-meta { margin: 7px 0 0; font-size: 12px; color: var(--text-sub); }
+.collections-theme { flex: 0 0 auto; display: grid; place-items: center; width: 36px; height: 36px;
+  border: 1px solid var(--border); border-radius: 10px; background: var(--bg); color: var(--text-sub); cursor: pointer;
+  transition: color .18s, border-color .18s, background .18s; }
+.collections-theme:hover { color: var(--accent); border-color: var(--accent-line); background: var(--accent-soft); }
+.collections-note { margin: 14px 0 0; padding: 10px 13px; border-radius: 10px; background: var(--bg-sub);
+  font-size: 12px; color: var(--text-sub); line-height: 1.8; }
+.collections-cards { display: flex; flex-direction: column; gap: 14px; margin-top: 18px; }
+.card { padding: 18px 20px 14px; border: 1px solid var(--border); border-radius: 15px; background: var(--bg);
+  box-shadow: var(--shadow-sm); transition: border-color .18s, box-shadow .18s, transform .18s; }
+.card:hover { border-color: var(--accent-line); box-shadow: 0 10px 26px -20px rgba(38, 74, 140, .4); transform: translateY(-1px); }
+.card-title { margin: 0; font-size: 17px; font-weight: 620; line-height: 1.5; overflow-wrap: anywhere; }
+.card-byline { margin: 8px 0 0; font-size: 12px; color: var(--text-sub); }
+.card-excerpt { margin: 10px 0 0; font-size: 13px; line-height: 1.95; white-space: normal; overflow-wrap: anywhere; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.card-tag { padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 11px; }
+.card-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 14px;
+  padding-top: 12px; border-top: 1px solid var(--border-soft); }
+/* 唯一可点的就是「阅读原文」：去知乎看原文与最新状态。互动数字是只读的。 */
+.card-origin { display: inline-flex; align-items: center; min-height: 32px; padding: 0 14px;
+  border: 1px solid var(--accent-line); border-radius: 9px; background: var(--accent-soft); color: var(--accent);
+  font-size: 12px; font-weight: 600; text-decoration: none;
+  transition: background .18s, border-color .18s, transform .18s; }
+.card-origin::after { content: " ↗"; }
+.card-origin:hover { border-color: var(--accent); background: var(--accent-soft-strong, var(--accent-soft)); transform: translateY(-1px); }
+.card-origin.missing { border-style: dashed; border-color: var(--border); background: transparent; color: var(--text-faint); font-weight: 400; cursor: default; }
+.card-origin.missing::after { content: ""; }
+.card-stats { font-size: 11px; color: var(--text-faint); cursor: help; }
+.collections-actions { margin-top: 18px; }
+.collections-more { padding: 9px 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg);
+  color: var(--text-sub); font: inherit; font-size: 12px; cursor: pointer;
+  transition: color .18s, border-color .18s, background .18s; }
+.collections-more:hover { color: var(--accent); border-color: var(--accent-line); background: var(--accent-soft); }
+.collections-feedback { margin: 14px 0 0; font-size: 12px; color: var(--text-sub); }
+.collections-feedback[data-kind="error"] { color: #a4442c; }
+.collections-empty { margin-top: 22px; padding: 30px 24px; border: 1px dashed var(--border); border-radius: 15px; text-align: center; }
+.collections-empty h2 { margin: 0 0 10px; font-size: 18px; font-weight: 600; }
+.collections-empty p { max-width: 470px; margin: 0 auto 18px; font-size: 13px; line-height: 1.9; color: var(--text-sub); }
+.collections-cta { display: inline-block; padding: 10px 18px; border: 1px solid var(--accent-line); border-radius: 10px;
+  background: var(--accent-soft); color: var(--accent); font-size: 13px; font-weight: 600; text-decoration: none; }
+.collections-cta:hover { background: var(--accent-soft-strong, var(--accent-soft)); }
+@media (max-width: 860px) {
+  .collections { grid-template-columns: minmax(0, 1fr); margin-inline: 12px; }
+  .collections-side { border-right: 0; border-bottom: 1px solid var(--border-soft); }
+  .collections-main { padding: 18px 16px 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card, .card-origin, .collections-item { transition: none; transform: none !important; }
+}
+
+/* ── 来源切换：我的收藏 / 我的创作 ─────────────────────────────────────────
+   两个来源共用同一套卡片渲染，这组切换只决定读哪个端点、侧栏按什么维度分组。 */
+.collections-source { display: flex; gap: 6px; padding: 4px; margin-bottom: 12px;
+  border: 1px solid var(--border-soft); border-radius: 13px; background: var(--bg-sub); }
+.collections-source-item { flex: 1 1 0; min-height: 38px; padding: 0 10px;
+  border: 1px solid transparent; border-radius: 10px; background: transparent;
+  color: var(--text-sub); font: inherit; font-size: 12px; cursor: pointer;
+  transition: background .18s, border-color .18s, color .18s; }
+.collections-source-item:hover { color: var(--accent); }
+.collections-source-item.active { border-color: var(--accent-line); background: var(--bg);
+  color: var(--accent); font-weight: 600; box-shadow: var(--shadow-sm); }
+.collections-source-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.collections-source-item:disabled { opacity: .55; cursor: default; }
+@media (prefers-reduced-motion: reduce) { .collections-source-item { transition: none; } }

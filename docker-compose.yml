@@ -1,0 +1,63 @@
+# 知脉 · 一体化入口（知乎 OAuth 登录 + 知识库工作区）
+#
+#   docker compose up -d --build    首次构建并启动
+#   docker compose logs -f          看日志
+#   docker compose down             停止
+#   docker compose up -d --build    改完代码后重建
+#
+# 凭证只从 .env 读，不进镜像、不进仓库。首次使用先执行：
+#   cp .env.example .env   然后按需取消注释并填值
+
+# 必须显式指定项目名：本项目所在目录名是中文（知乎），
+# Compose 从目录名推断项目名时会报 "project name must not be empty"。
+name: zhimai
+
+services:
+  zhimai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # 国内服务器构建时改成国内源会快很多（可在 .env 里设 PIP_INDEX）：
+        #   PIP_INDEX=https://mirrors.aliyun.com/pypi/simple/
+        PIP_INDEX: ${PIP_INDEX:-https://pypi.org/simple}
+    image: zhimai:latest
+    container_name: zhimai
+    restart: unless-stopped
+
+    # 内存护栏：这台机器总内存只有 896MB，平台底座（dockerd + 1Panel + containerd +
+    # 阿里云 agent）就占掉约 295MB。容器不设上限时，一旦自己涨起来会把整机拖到全局 OOM，
+    # 而内核按 oom_score 挑进程杀——可能顺手杀掉 dockerd 或 OpenResty，那时站点和面板一起挂。
+    # 实测容器历史峰值仅 135.7MB，384MB 有近 3 倍余量；memswap_limit 再给 384MB swap 兜底，
+    # 极端情况下宁可慢一点，也不要被 OOM 直接杀掉。
+    mem_limit: 384m
+    memswap_limit: 768m
+
+    ports:
+      # 宿主机端口:容器端口
+      # 如果前面还要挂一层 Nginx/Caddy 做 HTTPS 反代，建议改成
+      # "127.0.0.1:8099:8099" —— 只对本机开放，外部只能经反代进来。
+      - "8099:8099"
+
+    # 用户工作区数据（按知乎 uid 隔离的摘要快照）必须落在宿主机：
+    # DEFAULT_DB 在容器里是 /app/数据/用户工作区.sqlite3，不挂卷的话
+    # 每次 --build / down-up 都会清空已收录的摘要。
+    volumes:
+      - ./数据:/app/数据
+
+    # 只注入 .env 中真实存在的变量。
+    # 未在 .env 里出现的变量，在容器内就是「未设置」，会走官方默认值 —— 这正是本项目要的语义。
+    # 反过来，写成 `KEY=`（空串）会被判定为非法配置，务必不要那样写。
+    env_file:
+      - .env
+
+    environment:
+      TZ: Asia/Shanghai
+
+    healthcheck:
+      # /api/status 是公开路径（登录页要用它决定按钮是否可用），未登录也能通，适合探活。
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8099/api/status', timeout=5).status==200 else 1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s

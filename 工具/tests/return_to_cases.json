@@ -1,0 +1,297 @@
+[
+  {
+    "name": "valid-1",
+    "input": "/",
+    "expected": "/"
+  },
+  {
+    "name": "valid-2",
+    "input": "/?view=all#graph",
+    "expected": "/?view=all#graph"
+  },
+  {
+    "name": "valid-3",
+    "input": "/#note=wiki%2Ffixture.md",
+    "expected": "/#note=wiki%2Ffixture.md"
+  },
+  {
+    "name": "valid-4",
+    "input": "/workspace/",
+    "expected": "/workspace/"
+  },
+  {
+    "name": "valid-5",
+    "input": "/workspace?tab=收藏#tag=测试",
+    "expected": "/workspace?tab=收藏#tag=测试"
+  },
+  {
+    "name": "valid-6",
+    "input": "/搜索?q=rag",
+    "expected": "/搜索?q=rag"
+  },
+  {
+    "name": "valid-7",
+    "input": "/workspace/?q=50%25#graph",
+    "expected": "/workspace/?q=50%25#graph"
+  },
+  {
+    "name": "valid-8",
+    "input": "/workspace/?q=a+b&sort=new",
+    "expected": "/workspace/?q=a+b&sort=new"
+  },
+  {
+    "name": "valid-9",
+    "input": "/workspace/?url=https%3A%2F%2Fexample.org",
+    "expected": "/workspace/?url=https%3A%2F%2Fexample.org"
+  },
+  {
+    "name": "valid-10",
+    "input": "/index.html",
+    "expected": "/index.html"
+  },
+  {
+    "name": "valid-11",
+    "input": "/workspace/#tag=%E6%B5%8B%E8%AF%95",
+    "expected": "/workspace/#tag=%E6%B5%8B%E8%AF%95"
+  },
+  {
+    "name": "valid-12",
+    "input": "/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "expected": "/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  {
+    "name": "unsafe-1",
+    "input": null,
+    "expected": null
+  },
+  {
+    "name": "unsafe-2",
+    "input": 14,
+    "expected": null
+  },
+  {
+    "name": "unsafe-3",
+    "input": {},
+    "expected": null
+  },
+  {
+    "name": "unsafe-4",
+    "input": [],
+    "expected": null
+  },
+  {
+    "name": "unsafe-5",
+    "input": "",
+    "expected": null
+  },
+  {
+    "name": "unsafe-6",
+    "input": "workspace/",
+    "expected": null
+  },
+  {
+    "name": "unsafe-7",
+    "input": "https://demo.example.test/workspace/",
+    "expected": null
+  },
+  {
+    "name": "unsafe-8",
+    "input": "https://evil.example/",
+    "expected": null
+  },
+  {
+    "name": "unsafe-9",
+    "input": "//evil.example/",
+    "expected": null
+  },
+  {
+    "name": "unsafe-10",
+    "input": "///evil.example/",
+    "expected": null
+  },
+  {
+    "name": "unsafe-11",
+    "input": "javascript:alert(1)",
+    "expected": null
+  },
+  {
+    "name": "unsafe-12",
+    "input": " /workspace/",
+    "expected": null
+  },
+  {
+    "name": "unsafe-13",
+    "input": "/a/../b",
+    "expected": null
+  },
+  {
+    "name": "unsafe-14",
+    "input": "/a/./b",
+    "expected": null
+  },
+  {
+    "name": "unsafe-15",
+    "input": "/%2e%2e/evil",
+    "expected": null
+  },
+  {
+    "name": "unsafe-16",
+    "input": "/%252e%252e/evil",
+    "expected": null
+  },
+  {
+    "name": "unsafe-17",
+    "input": "/%2Fevil.example",
+    "expected": null
+  },
+  {
+    "name": "unsafe-18",
+    "input": "/%252Fevil.example",
+    "expected": null
+  },
+  {
+    "name": "unsafe-19",
+    "input": "/%5Cevil.example",
+    "expected": null
+  },
+  {
+    "name": "unsafe-20",
+    "input": "/%255Cevil.example",
+    "expected": null
+  },
+  {
+    "name": "unsafe-21",
+    "input": "/a\\b",
+    "expected": null
+  },
+  {
+    "name": "unsafe-22",
+    "input": "/a\nb",
+    "expected": null
+  },
+  {
+    "name": "unsafe-23",
+    "input": "/workspace/?q=%0d%0aLocation%3Aevil",
+    "expected": null
+  },
+  {
+    "name": "unsafe-24",
+    "input": "/workspace/#x=%2500",
+    "expected": null
+  },
+  {
+    "name": "unsafe-25",
+    "input": "/%FF",
+    "expected": null
+  },
+  {
+    "name": "unsafe-26",
+    "input": "/%E0%A4%A",
+    "expected": null
+  },
+  {
+    "name": "unsafe-27",
+    "input": "/%",
+    "expected": null
+  },
+  {
+    "name": "unsafe-28",
+    "input": "/%zz",
+    "expected": null
+  },
+  {
+    "name": "unsafe-29",
+    "input": "/login",
+    "expected": null
+  },
+  {
+    "name": "unsafe-30",
+    "input": "/login/",
+    "expected": null
+  },
+  {
+    "name": "unsafe-31",
+    "input": "/LOGIN",
+    "expected": null
+  },
+  {
+    "name": "unsafe-32",
+    "input": "/%6cogin",
+    "expected": null
+  },
+  {
+    "name": "unsafe-33",
+    "input": "/%256cogin",
+    "expected": null
+  },
+  {
+    "name": "unsafe-34",
+    "input": "/login;session=x",
+    "expected": null
+  },
+  {
+    "name": "unsafe-35",
+    "input": "/auth/zhihu/callback",
+    "expected": null
+  },
+  {
+    "name": "unsafe-36",
+    "input": "/api/me",
+    "expected": null
+  },
+  {
+    "name": "unsafe-37",
+    "input": "/assets/oauth.js",
+    "expected": null
+  },
+  {
+    "name": "unsafe-38",
+    "input": "/oauth/index.html",
+    "expected": null
+  },
+  {
+    "name": "unsafe-39",
+    "input": "/workspace/assets/app.js",
+    "expected": null
+  },
+  {
+    "name": "unsafe-40",
+    "input": "/lib/file",
+    "expected": null
+  },
+  {
+    "name": "unsafe-41",
+    "input": "/笔记库/wiki/a.md",
+    "expected": null
+  },
+  {
+    "name": "unsafe-42",
+    "input": "/?returnTo=%2F",
+    "expected": null
+  },
+  {
+    "name": "unsafe-43",
+    "input": "/workspace/?%72eturnTo=%2F",
+    "expected": null
+  },
+  {
+    "name": "unsafe-44",
+    "input": "/workspace/?%2572eturnTo=%2F",
+    "expected": null
+  },
+  {
+    "name": "unsafe-45",
+    "input": "/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "expected": null
+  },
+  {
+    "name": "unsafe-46",
+    "input": "/%252525252525252525252fevil",
+    "expected": null
+  },
+  {
+    "name": "unsafe-47",
+    "input": "/\ud800",
+    "expected": null
+  }
+]
